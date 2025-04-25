@@ -35,7 +35,7 @@ Create a `.env` file in the root directory with the following variables:
 PORT=3000
 
 # ROM path for stdio mode
-ROM_PATH=./roms/example.gb
+ROM_PATH=./roms/dangan.gb
 ```
 
 ### Running in stdio Mode
