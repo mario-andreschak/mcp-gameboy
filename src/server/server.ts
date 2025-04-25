@@ -1,13 +1,13 @@
 import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
-import { GameBoyEmulator } from '../gameboy';
+import { EmulatorService } from '../emulatorService'; // Import EmulatorService
 import { registerGameBoyTools } from '../tools';
 
 /**
  * Create a GameBoy MCP server
- * @param emulator GameBoy emulator instance
+ * @param emulatorService Emulator service instance
  * @returns MCP server instance
  */
-export function createGameBoyServer(emulator: GameBoyEmulator): McpServer {
+export function createGameBoyServer(emulatorService: EmulatorService): McpServer {
   // Create the server
   const server = new McpServer(
     {
@@ -22,7 +22,7 @@ export function createGameBoyServer(emulator: GameBoyEmulator): McpServer {
   );
 
   // Register GameBoy tools
-  registerGameBoyTools(server, emulator);
+  registerGameBoyTools(server, emulatorService); // Pass emulatorService
 
   return server;
 }

@@ -36,3 +36,4 @@ Thumbs.db
 # ROM files
 roms/*.gb
 roms/*.gbc
+mcp-gameboy.log

@@ -137,8 +137,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc",
     "start": "node dist/index.js",
-    "start:stdio": "node dist/index.js --stdio",
-    "start:sse": "node dist/index.js --sse",
+    "start-sse": "node dist/index.js --sse",
     "dev": "ts-node src/index.ts",
     "debug": "tsc && npx @modelcontextprotocol/inspector node dist/index.js --stdio",
     "debug-sse": "tsc && @modelcontextprotocol/inspector node dist/index.js --sse"

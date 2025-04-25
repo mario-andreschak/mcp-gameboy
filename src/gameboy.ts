@@ -2,6 +2,7 @@ import { GameBoyButton } from './types';
 import * as fs from 'fs';
 import * as path from 'path';
 import { createCanvas, Canvas } from 'canvas';
+import { log } from './utils/logger';
 
 // Import the serverboy library
 const Gameboy = require('serverboy');
@@ -28,9 +29,9 @@ export class GameBoyEmulator {
       this.gameboy.loadRom(rom);
       this.romLoaded = true;
       this.romPath = romPath;
-      console.log(`ROM loaded: ${path.basename(romPath)}`);
+      log.info(`ROM loaded: ${path.basename(romPath)}`);
     } catch (error) {
-      console.error(`Error loading ROM: ${error}`);
+      log.error(`Error loading ROM: ${error}`);
       throw new Error(`Failed to load ROM: ${error}`);
     }
   }
