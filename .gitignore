@@ -33,7 +33,6 @@ build/
 ehthumbs.db
 Thumbs.db
 
-# ROM files
-roms/*.gb
-roms/*.gbc
 mcp-gameboy.log
+roms/example.gb
+roms/Pokemon Red.gb
