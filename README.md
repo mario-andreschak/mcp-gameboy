@@ -1,4 +1,5 @@
 # MCP GameBoy Server
+[![smithery badge](https://smithery.ai/badge/@mario-andreschak/mcp-gameboy)](https://smithery.ai/server/@mario-andreschak/mcp-gameboy)
 
 A Model Context Protocol (MCP) server for the GameBoy emulator, allowing LLMs to interact with a GameBoy emulator.
 
@@ -11,6 +12,16 @@ A Model Context Protocol (MCP) server for the GameBoy emulator, allowing LLMs to
 - All tools return an ImageContent with the latest screen frame
 
 ## Installation
+
+### Installing via Smithery
+
+To install GameBoy Emulator Server for Claude Desktop automatically via [Smithery](https://smithery.ai/server/@mario-andreschak/mcp-gameboy):
+
+```bash
+npx -y @smithery/cli install @mario-andreschak/mcp-gameboy --client claude
+```
+
+### Manual Installation
 
 ```bash
 # Clone the repository
