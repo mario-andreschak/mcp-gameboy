@@ -19,14 +19,14 @@ async function main(): Promise<void> {
   
   // Start the appropriate server
   if (isStdio) {
-    console.log('Starting GameBoy MCP server in stdio mode');
+    // console.log('Starting GameBoy MCP server in stdio mode');
     await startStdioServer();
   } else if (isSse) {
     console.log(`Starting GameBoy MCP server in SSE mode on port ${port}`);
     await startSseServer(port);
   } else {
     // Default to stdio mode
-    console.log('No mode specified, defaulting to stdio mode');
+    // console.log('No mode specified, defaulting to stdio mode');
     await startStdioServer();
   }
 }
