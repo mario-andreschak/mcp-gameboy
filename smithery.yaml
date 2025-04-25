@@ -1,0 +1,43 @@
+# Smithery configuration file: https://smithery.ai/docs/config#smitheryyaml
+
+startCommand:
+  type: stdio
+  configSchema:
+    # JSON Schema defining the configuration options for the MCP.
+    type: object
+    required:
+      - romPath
+    properties:
+      romPath:
+        type: string
+        default: ./roms/dangan.gb
+        description: Path to the GameBoy ROM file
+      mode:
+        type: string
+        default: stdio
+        description: "Transport mode: stdio or sse"
+      port:
+        type: number
+        default: 3000
+        description: Port for SSE mode
+  commandFunction:
+    # A JS function that produces the CLI command based on the given config to start the MCP on stdio.
+    |-
+    (config) => {
+      const args = [];
+      if (config.mode === 'sse') {
+        args.push('--sse');
+      }
+      return {
+        command: 'node',
+        args: ['dist/index.js', ...args],
+        env: {
+          ROM_PATH: config.romPath,
+          PORT: String(config.port)
+        }
+      };
+    }
+  exampleConfig:
+    romPath: ./roms/dangan.gb
+    mode: stdio
+    port: 3000
