@@ -20,6 +20,11 @@ export enum GameBoyButton {
 // Tool schemas
 export interface PressButtonToolSchema {
   button: GameBoyButton;
+  duration_frames?: number;
+}
+
+export interface WaitFramesToolSchema {
+  duration_frames: number;
 }
 
 export interface LoadRomToolSchema {

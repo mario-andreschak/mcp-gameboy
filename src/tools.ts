@@ -18,13 +18,21 @@ export function registerGameBoyTools(server: McpServer, emulator: GameBoyEmulato
     server.tool(
       `press_${button.toLowerCase()}`,
       `Press the ${button} button on the GameBoy`,
-      {},
-      async (): Promise<CallToolResult> => {
+      {
+        duration_frames: z.number().int().positive().optional().default(1).describe('Number of frames to hold the button').default(3)
+      },
+      async ({ duration_frames }): Promise<CallToolResult> => {
         if (!emulator.isRomLoaded()) {
           throw new Error('No ROM loaded');
         }
 
+        // Press the button (this already advances one frame)
         emulator.pressButton(button);
+        
+        // If duration_frames > 1, advance additional frames
+        for (let i = 1; i < duration_frames; i++) {
+          emulator.doFrame();
+        }
         
         // Return the current screen
         const screenBase64 = emulator.getScreenAsBase64();
@@ -40,6 +48,37 @@ export function registerGameBoyTools(server: McpServer, emulator: GameBoyEmulato
       }
     );
   });
+
+  // Register wait_frames tool
+  server.tool(
+    'wait_frames',
+    'Wait for a specified number of frames',
+    {
+      duration_frames: z.number().int().positive().describe('Number of frames to wait').default(10)
+    },
+    async ({ duration_frames }): Promise<CallToolResult> => {
+      if (!emulator.isRomLoaded()) {
+        throw new Error('No ROM loaded');
+      }
+      
+      // Advance the specified number of frames
+      for (let i = 0; i < duration_frames; i++) {
+        emulator.doFrame();
+      }
+      
+      // Return the current screen
+      const screenBase64 = emulator.getScreenAsBase64();
+      const screen: ImageContent = {
+        type: 'image',
+        data: screenBase64,
+        mimeType: 'image/png'
+      };
+
+      return {
+        content: [screen]
+      };
+    }
+  );
 
   // Register load ROM tool
   server.tool(
