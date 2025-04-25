@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GameBoy MCP Server Test Interface</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 20px;
+      line-height: 1.6;
+    }
+    
+    h1, h2, h3 {
+      color: #333;
+    }
+    
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    
+    .panel {
+      background-color: #f5f5f5;
+      border-radius: 5px;
+      padding: 20px;
+      margin-top: 20px;
+      flex: 1;
+      min-width: 300px;
+    }
+    
+    .gameboy-screen {
+      width: 320px;
+      height: 288px;
+      background-color: #9bbc0f;
+      border: 10px solid #333;
+      border-radius: 5px;
+      margin: 0 auto;
+      display: block;
+    }
+    
+    .controls {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-gap: 10px;
+      margin-top: 20px;
+    }
+    
+    .controls button {
+      padding: 10px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    
+    .button-up {
+      grid-column: 2;
+      grid-row: 1;
+    }
+    
+    .button-left {
+      grid-column: 1;
+      grid-row: 2;
+    }
+    
+    .button-right {
+      grid-column: 3;
+      grid-row: 2;
+    }
+    
+    .button-down {
+      grid-column: 2;
+      grid-row: 3;
+    }
+    
+    .action-buttons {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-gap: 10px;
+      margin-top: 20px;
+    }
+    
+    .rom-selection {
+      margin-top: 20px;
+    }
+    
+    .rom-selection select {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 10px;
+    }
+    
+    .rom-selection button {
+      width: 100%;
+      padding: 10px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    
+    .rom-selection button:hover {
+      background-color: #45a049;
+    }
+    
+    .response-log {
+      height: 300px;
+      overflow-y: auto;
+      background-color: #f8f8f8;
+      border: 1px solid #ddd;
+      padding: 10px;
+      font-family: monospace;
+      white-space: pre-wrap;
+      margin-top: 10px;
+    }
+    
+    .refresh-button {
+      width: 100%;
+      padding: 10px;
+      background-color: #2196F3;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+    
+    .refresh-button:hover {
+      background-color: #0b7dda;
+    }
+    
+    .connection-status {
+      padding: 10px;
+      margin-top: 10px;
+      border-radius: 4px;
+      text-align: center;
+    }
+    
+    .connected {
+      background-color: #dff0d8;
+      color: #3c763d;
+    }
+    
+    .disconnected {
+      background-color: #f2dede;
+      color: #a94442;
+    }
+  </style>
+</head>
+<body>
+  <h1>GameBoy MCP Server Test Interface</h1>
+  
+  <div class="connection-status disconnected" id="connectionStatus">
+    Not connected to MCP server
+  </div>
+  
+  <div class="container">
+    <div class="panel">
+      <h2>GameBoy Display</h2>
+      <img id="gameboyScreen" class="gameboy-screen" alt="GameBoy Screen" />
+      <button id="refreshScreen" class="refresh-button">Refresh Screen</button>
+    </div>
+    
+    <div class="panel">
+      <h2>GameBoy Controls</h2>
+      <div class="controls">
+        <button class="button-up" id="buttonUp">UP</button>
+        <button class="button-left" id="buttonLeft">LEFT</button>
+        <button class="button-right" id="buttonRight">RIGHT</button>
+        <button class="button-down" id="buttonDown">DOWN</button>
+      </div>
+      <div class="action-buttons">
+        <button id="buttonA">A</button>
+        <button id="buttonB">B</button>
+        <button id="buttonStart">START</button>
+        <button id="buttonSelect">SELECT</button>
+      </div>
+    </div>
+  </div>
+  
+  <div class="panel">
+    <h2>ROM Selection</h2>
+    <div class="rom-selection">
+      <select id="romSelect">
+        <option value="">Select a ROM...</option>
+      </select>
+      <button id="loadRom">Load ROM</button>
+    </div>
+  </div>
+  
+  <div class="panel">
+    <h2>Response Log</h2>
+    <div id="responseLog" class="response-log"></div>
+  </div>
+  <script src="test-interface.js"></script>
+</body>
+</html>
