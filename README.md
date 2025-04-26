@@ -32,6 +32,8 @@ npm run build
 
 ### Installing via Configuration Files
 
+!! **ATTENTION** : Many MCP Clients require to specify the ROM-Path in the .env vars as an **absolute path**
+
 To integrate this MCP server with Cline or other MCP clients via configuration files:
 
 1. Open your Cline settings:
