@@ -27,12 +27,7 @@ export function registerGameBoyTools(server: McpServer, emulatorService: Emulato
       },
       async ({ duration_frames }): Promise<CallToolResult> => {
         // Press the button using the service (advances one frame)
-        emulatorService.pressButton(button);
-
-        // If duration_frames > 1, wait additional frames using the service
-        if (duration_frames > 1) {
-          emulatorService.waitFrames(duration_frames - 1);
-        }
+        emulatorService.pressButton(button, duration_frames);
 
         // Return the current screen using the service
         const screen = emulatorService.getScreen();

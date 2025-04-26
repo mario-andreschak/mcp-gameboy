@@ -65,16 +65,17 @@ export class EmulatorService {
   /**
    * Presses a GameBoy button for a single frame.
    * @param button The button to press.
+   * @param durationFrames The number of frames to press the button.
    * @returns The screen content after pressing the button.
    * @throws Error if no ROM is loaded.
    */
-  pressButton(button: GameBoyButton): ImageContent {
+  pressButton(button: GameBoyButton, durationFrames: number): ImageContent {
     log.debug(`Pressing button: ${button}`);
     if (!this.isRomLoaded()) {
       log.warn('Attempted to press button with no ROM loaded');
       throw new Error('No ROM loaded');
     }
-    this.emulator.pressButton(button); // This advances one frame
+    this.emulator.pressButton(button, durationFrames); // This advances one frame
     return this.getScreen();
   }
 
