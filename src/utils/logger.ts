@@ -1,13 +1,15 @@
 import * as fs from 'fs';
 import * as path from 'path';
+import { string } from 'zod';
 
-const logFilePath = path.join(process.cwd(), 'mcp-gameboy.log');
+const logFilePath = './mcp-gameboy.log';
+// const logFilePath = path.join(process.cwd(), 'mcp-gameboy.log');
 
 // Ensure the log file exists
 try {
   fs.appendFileSync(logFilePath, ''); // Create file if it doesn't exist, or just touch it
 } catch (err) {
-  console.error('Failed to ensure log file exists:', err); // Use console here as logger isn't ready
+  console.error('CRITICAL FAILURE: Failed to ensure log file exists:', err); // Use console here as logger isn't ready
 }
 
 type LogLevel = 'INFO' | 'ERROR' | 'WARN' | 'DEBUG' | 'VERBOSE';
@@ -66,6 +68,7 @@ export const log = {
    * @param optionalParams Additional parameters to log
    */
   error: (message: string, ...optionalParams: any[]) => {
+    console.error(message)
     writeLog('ERROR', message, ...optionalParams);
   },
 
