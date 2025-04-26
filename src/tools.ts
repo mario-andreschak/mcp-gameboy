@@ -23,7 +23,7 @@ export function registerGameBoyTools(server: McpServer, emulatorService: Emulato
       `press_${button.toLowerCase()}`,
       `Press the ${button} button on the GameBoy`,
       {
-        duration_frames: z.number().int().positive().optional().default(1).describe('Number of frames to hold the button').default(5)
+        duration_frames: z.number().int().positive().optional().default(1).describe('Number of frames to hold the button').default(25)
       },
       async ({ duration_frames }): Promise<CallToolResult> => {
         // Press the button using the service (advances one frame)
