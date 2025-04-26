@@ -257,10 +257,7 @@ export function setupWebUI(app: express.Application, emulatorService: EmulatorSe
                res.status(400).json({ error: 'Invalid duration_frames for press' });
                return; // Exit early
              }
-             emulatorService.pressButton(buttonName as GameBoyButton);
-             if (duration_frames_press > 1) {
-               emulatorService.waitFrames(duration_frames_press - 1);
-             }
+             emulatorService.pressButton(buttonName as GameBoyButton, duration_frames_press);
              result = emulatorService.getScreen();
           } else {
             res.status(400).json({ error: `Unknown tool: ${tool}` });
