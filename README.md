@@ -65,12 +65,13 @@ To integrate this MCP server with Cline or other MCP clients via configuration f
 ## Usage
 
 ### Environment Variables
+!! **ATTENTION** : Many MCP Clients require to specify the ROM-Path in the .env vars as an **absolute path**
 
 Create a `.env` file in the root directory with the following variables:
 
 ```
 # Server configuration
-PORT=3000
+PORT=3001
 
 # ROM path for stdio mode
 ROM_PATH=./roms/dangan.gb
@@ -81,7 +82,7 @@ ROM_PATH=./roms/dangan.gb
 In stdio mode, the server uses the ROM path specified in the `ROM_PATH` environment variable. It will open a browser window to display the GameBoy screen.
 
 ```bash
-npm run start:stdio
+npm run start
 ```
 
 ### Running in SSE Mode
@@ -89,10 +90,10 @@ npm run start:stdio
 In SSE mode, the server starts an Express server that serves a web page for ROM selection.
 
 ```bash
-npm run start:sse
+npm run start-sse
 ```
 
-Then open your browser to `http://localhost:3000` to select a ROM.
+Then open your browser to `http://localhost:3001` to select a ROM.
 
 ## Tools
 
