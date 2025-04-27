@@ -1,9 +1,9 @@
+# MCP GameBoy Server
 
 <a href="https://glama.ai/mcp/servers/@mario-andreschak/mcp-gameboy">
   <img width="380" height="200" src="https://glama.ai/mcp/servers/@mario-andreschak/mcp-gameboy/badge" alt="GameBoy Server MCP server" />
 </a>
 
-# MCP GameBoy Server
 
 A Model Context Protocol (MCP) server for the GameBoy emulator, allowing LLMs to interact with a GameBoy emulator.
 ![Screenshot 2025-04-25 183528](https://github.com/user-attachments/assets/a248ef8a-73bb-4fc7-9c7f-7832cea34498)
