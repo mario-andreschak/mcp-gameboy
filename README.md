@@ -5,8 +5,19 @@
   <img width="380" height="200" src="https://glama.ai/mcp/servers/@mario-andreschak/mcp-gameboy/badge" alt="GameBoy Server MCP server" />
 </a>
 
+## Overview
+A Model Context Protocol (MCP) server for serverboy, allowing LLMs to interact with a GameBoy emulator.
+Your LLM can...
+- Load ROMS
+- Press Keys
+- Look at the Gameboy Screen
+- skip frames
 
-A Model Context Protocol (MCP) server for the GameBoy emulator, allowing LLMs to interact with a GameBoy emulator.
+You can...
+- control the gameboy emulator using the @modelcontextprotocol/inspector
+- control the gameboy emulator (and upload ROMs) using a web-interface at http://localhost:3001/emulator
+- install the gameboy emulator in your favorite MCP-Client
+
 ![Screenshot 2025-04-25 183528](https://github.com/user-attachments/assets/a248ef8a-73bb-4fc7-9c7f-7832cea34498)
 
 ![Screenshot 2025-04-25 081510](https://github.com/user-attachments/assets/dd47d7ea-fe93-4162-9da5-8da7d9aab469)
