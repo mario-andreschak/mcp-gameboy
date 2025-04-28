@@ -17,7 +17,7 @@ COPY . .
 
 # Build TypeScript
 RUN npm install 
-RUN npm run build
+# RUN npm run build
 
 # Default command uses stdio transport
 CMD ["node", "dist/index.js"]
