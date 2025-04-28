@@ -1,7 +1,18 @@
 # MCP GameBoy Server
 [![smithery badge](https://smithery.ai/badge/@mario-andreschak/mcp-gameboy)](https://smithery.ai/server/@mario-andreschak/mcp-gameboy)
 
+<a href="https://glama.ai/mcp/servers/@mario-andreschak/mcp-gameboy">
+  <img width="380" height="200" src="https://glama.ai/mcp/servers/@mario-andreschak/mcp-gameboy/badge" alt="GameBoy Server MCP server" />
+</a>
+
+
 A Model Context Protocol (MCP) server for the GameBoy emulator, allowing LLMs to interact with a GameBoy emulator.
+![Screenshot 2025-04-25 183528](https://github.com/user-attachments/assets/a248ef8a-73bb-4fc7-9c7f-7832cea34498)
+
+![Screenshot 2025-04-25 081510](https://github.com/user-attachments/assets/dd47d7ea-fe93-4162-9da5-8da7d9aab469)
+
+![image](https://github.com/user-attachments/assets/b9565920-b2ae-41d5-8609-59d832a90d44)
+
 
 ## Features
 
@@ -21,6 +32,11 @@ To install GameBoy Emulator Server for Claude Desktop automatically via [Smither
 npx -y @smithery/cli install @mario-andreschak/mcp-gameboy --client claude
 ```
 
+### Installing in [FLUJO](https://github.com/mario-andreschak/FLUJO/)
+1. Click Add Server
+2. Copy & Paste Github URL into FLUJO
+3. Click Parse, Clone, Install, Build and Save.
+
 ### Manual Installation
 
 ```bash
@@ -35,15 +51,48 @@ npm install
 npm run build
 ```
 
+### Installing via Configuration Files
+
+!! **ATTENTION** : Many MCP Clients require to specify the ROM-Path in the .env vars as an **absolute path**
+
+To integrate this MCP server with Cline or other MCP clients via configuration files:
+
+1. Open your Cline settings:
+   - In VS Code, go to File -> Preferences -> Settings
+   - Search for "Cline MCP Settings"
+   - Click "Edit in settings.json"
+
+2. Add the server configuration to the `mcpServers` object:
+   ```json
+   {
+     "mcpServers": {
+       "mcp-gameboy": {
+         "command": "node",
+         "args": [
+           "/path/to/mcp-gameboy/dist/index.js"
+         ],
+         "disabled": false,
+         "autoApprove": []
+       }
+     }
+   }
+   ```
+
+3. Replace `/path/to/mcp-gameboy/dist/index.js` with the actual path to the `index.js` file in your project directory. Use forward slashes (/) or double backslashes (\\\\) for the path on Windows.
+
+4. Save the settings file. Cline should automatically connect to the server.
+
+
 ## Usage
 
 ### Environment Variables
+!! **ATTENTION** : Many MCP Clients require to specify the ROM-Path in the .env vars as an **absolute path**
 
 Create a `.env` file in the root directory with the following variables:
 
 ```
 # Server configuration
-PORT=3000
+PORT=3001
 
 # ROM path for stdio mode
 ROM_PATH=./roms/dangan.gb
@@ -54,7 +103,7 @@ ROM_PATH=./roms/dangan.gb
 In stdio mode, the server uses the ROM path specified in the `ROM_PATH` environment variable. It will open a browser window to display the GameBoy screen.
 
 ```bash
-npm run start:stdio
+npm run start
 ```
 
 ### Running in SSE Mode
@@ -62,10 +111,10 @@ npm run start:stdio
 In SSE mode, the server starts an Express server that serves a web page for ROM selection.
 
 ```bash
-npm run start:sse
+npm run start-sse
 ```
 
-Then open your browser to `http://localhost:3000` to select a ROM.
+Then open your browser to `http://localhost:3001` to select a ROM.
 
 ## Tools
 

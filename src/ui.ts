@@ -77,6 +77,10 @@ export function setupWebUI(app: express.Application, emulatorService: EmulatorSe
               <input type="checkbox" id="auto-play-checkbox">
               <label for="auto-play-checkbox">Auto-Play</label>
             </div>
+            <div id="button-duration-container" style="margin-top: 10px; display: flex; align-items: center;">
+              <label for="button-duration-input" style="margin-right: 5px;">Button Press Duration:</label>
+              <input type="number" id="button-duration-input" min="1" value="25" style="width: 50px;">
+            </div>
           </div>
           <a id="back-button" href="/">Back to ROM Selection</a>
 
@@ -84,6 +88,7 @@ export function setupWebUI(app: express.Application, emulatorService: EmulatorSe
             let autoPlayEnabled = false;
             let updateTimeoutId = null;
             const autoPlayCheckbox = document.getElementById('auto-play-checkbox');
+            const buttonDurationInput = document.getElementById('button-duration-input');
             const screenImg = document.getElementById('screen');
 
             autoPlayCheckbox.addEventListener('change', (event) => {
@@ -154,14 +159,38 @@ export function setupWebUI(app: express.Application, emulatorService: EmulatorSe
             }
 
             // Add event listeners for buttons
-            document.getElementById('btn-up')?.addEventListener('click', () => callApiTool('press_up'));
-            document.getElementById('btn-down')?.addEventListener('click', () => callApiTool('press_down'));
-            document.getElementById('btn-left')?.addEventListener('click', () => callApiTool('press_left'));
-            document.getElementById('btn-right')?.addEventListener('click', () => callApiTool('press_right'));
-            document.getElementById('btn-a')?.addEventListener('click', () => callApiTool('press_a'));
-            document.getElementById('btn-b')?.addEventListener('click', () => callApiTool('press_b'));
-            document.getElementById('btn-start')?.addEventListener('click', () => callApiTool('press_start'));
-            document.getElementById('btn-select')?.addEventListener('click', () => callApiTool('press_select'));
+            document.getElementById('btn-up')?.addEventListener('click', () => {
+              const duration = parseInt(buttonDurationInput.value) || 5;
+              callApiTool('press_up', { duration_frames: duration });
+            });
+            document.getElementById('btn-down')?.addEventListener('click', () => {
+              const duration = parseInt(buttonDurationInput.value) || 5;
+              callApiTool('press_down', { duration_frames: duration });
+            });
+            document.getElementById('btn-left')?.addEventListener('click', () => {
+              const duration = parseInt(buttonDurationInput.value) || 5;
+              callApiTool('press_left', { duration_frames: duration });
+            });
+            document.getElementById('btn-right')?.addEventListener('click', () => {
+              const duration = parseInt(buttonDurationInput.value) || 5;
+              callApiTool('press_right', { duration_frames: duration });
+            });
+            document.getElementById('btn-a')?.addEventListener('click', () => {
+              const duration = parseInt(buttonDurationInput.value) || 5;
+              callApiTool('press_a', { duration_frames: duration });
+            });
+            document.getElementById('btn-b')?.addEventListener('click', () => {
+              const duration = parseInt(buttonDurationInput.value) || 5;
+              callApiTool('press_b', { duration_frames: duration });
+            });
+            document.getElementById('btn-start')?.addEventListener('click', () => {
+              const duration = parseInt(buttonDurationInput.value) || 5;
+              callApiTool('press_start', { duration_frames: duration });
+            });
+            document.getElementById('btn-select')?.addEventListener('click', () => {
+              const duration = parseInt(buttonDurationInput.value) || 5;
+              callApiTool('press_select', { duration_frames: duration });
+            });
             document.getElementById('btn-skip')?.addEventListener('click', () => callApiTool('wait_frames', { duration_frames: 100 }));
 
             // Start the screen update loop
@@ -252,15 +281,12 @@ export function setupWebUI(app: express.Application, emulatorService: EmulatorSe
               res.status(400).json({ error: `Invalid button: ${buttonName}` });
               return; // Exit early
             }
-             const duration_frames_press = params?.duration_frames ?? 1;
+             const duration_frames_press = params?.duration_frames ?? 5;
              if (typeof duration_frames_press !== 'number' || duration_frames_press <= 0) {
                res.status(400).json({ error: 'Invalid duration_frames for press' });
                return; // Exit early
              }
-             emulatorService.pressButton(buttonName as GameBoyButton);
-             if (duration_frames_press > 1) {
-               emulatorService.waitFrames(duration_frames_press - 1);
-             }
+             emulatorService.pressButton(buttonName as GameBoyButton, duration_frames_press);
              result = emulatorService.getScreen();
           } else {
             res.status(400).json({ error: `Unknown tool: ${tool}` });

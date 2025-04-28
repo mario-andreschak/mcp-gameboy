@@ -40,7 +40,7 @@ export class GameBoyEmulator {
    * Press a button on the GameBoy
    * @param button Button to press
    */
-  public pressButton(button: GameBoyButton): void {
+  public pressButton(button: GameBoyButton, durationFrames: number = 1): void {
     if (!this.romLoaded) {
       throw new Error('No ROM loaded');
     }
@@ -57,8 +57,10 @@ export class GameBoyEmulator {
       [GameBoyButton.SELECT]: Gameboy.KEYMAP.SELECT
     };
 
-    this.gameboy.pressKeys([buttonMap[button]]);
-    this.gameboy.doFrame();
+    for (let i=0; i < durationFrames; i++) {
+      this.gameboy.pressKeys([buttonMap[button]]);
+      this.gameboy.doFrame();
+    }
   }
 
   /**
