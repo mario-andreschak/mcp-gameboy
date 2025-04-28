@@ -3,19 +3,20 @@
 FROM node:lts-alpine
 
 # Install build dependencies for canvas
-RUN apk add --no-cache python3 make g++ cairo-dev pango-dev jpeg-dev giflib-dev
+# RUN apk add --no-cache python3 make g++ cairo-dev pango-dev jpeg-dev giflib-dev
 
 # Set working directory
 WORKDIR /app
 
 # Install dependencies
-COPY package.json package-lock.json ./
-RUN npm ci --omit=dev
+# COPY package.json package-lock.json ./
+# RUN npm ci --omit=dev
 
 # Copy source code
 COPY . .
 
 # Build TypeScript
+RUN npm install 
 RUN npm run build
 
 # Default command uses stdio transport
