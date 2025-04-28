@@ -61,6 +61,9 @@ export class GameBoyEmulator {
       this.gameboy.pressKeys([buttonMap[button]]);
       this.gameboy.doFrame();
     }
+
+    // for now: advance one frame so we dont "hold" the button all the time.
+    this.gameboy.doFrame();
   }
 
   /**
