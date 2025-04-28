@@ -9,8 +9,8 @@ FROM node:lts-alpine
 WORKDIR /app
 
 # Install dependencies
-# COPY package.json package-lock.json ./
-# RUN npm ci --omit=dev
+COPY package.json package-lock.json ./
+RUN npm ci --omit=dev
 
 # Copy source code
 COPY . .
