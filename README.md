@@ -1,4 +1,5 @@
 # MCP GameBoy Server
+[![smithery badge](https://smithery.ai/badge/@mario-andreschak/mcp-gameboy)](https://smithery.ai/server/@mario-andreschak/mcp-gameboy)
 
 <a href="https://glama.ai/mcp/servers/@mario-andreschak/mcp-gameboy">
   <img width="380" height="200" src="https://glama.ai/mcp/servers/@mario-andreschak/mcp-gameboy/badge" alt="GameBoy Server MCP server" />
@@ -23,12 +24,21 @@ A Model Context Protocol (MCP) server for the GameBoy emulator, allowing LLMs to
 
 ## Installation
 
+### Installing via Smithery
+
+To install GameBoy Emulator Server for Claude Desktop automatically via [Smithery](https://smithery.ai/server/@mario-andreschak/mcp-gameboy):
+
+```bash
+npx -y @smithery/cli install @mario-andreschak/mcp-gameboy --client claude
+```
+
 ### Installing in [FLUJO](https://github.com/mario-andreschak/FLUJO/)
 1. Click Add Server
 2. Copy & Paste Github URL into FLUJO
 3. Click Parse, Clone, Install, Build and Save.
 
 ### Manual Installation
+
 ```bash
 # Clone the repository
 git clone https://github.com/yourusername/mcp-gameboy.git
