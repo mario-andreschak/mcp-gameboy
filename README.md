@@ -1,3 +1,5 @@
+[![MseeP.ai Security Assessment Badge](https://mseep.net/pr/mario-andreschak-mcp-gameboy-badge.png)](https://mseep.ai/app/mario-andreschak-mcp-gameboy)
+
 # MCP GameBoy Server
 [![smithery badge](https://smithery.ai/badge/@mario-andreschak/mcp-gameboy)](https://smithery.ai/server/@mario-andreschak/mcp-gameboy)
 
